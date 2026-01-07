@@ -41,7 +41,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       {Array.from({ length: pagesCount }, (_, i) => i + 1).map(item => (
         <li
           className={classNames('page-item', {
-            active: Number(item === currentPage),
+            active: item === currentPage,
           })}
           key={item}
         >
@@ -51,7 +51,9 @@ export const Pagination: React.FC<PaginationProps> = ({
             href="#1"
             onClick={e => {
               e.preventDefault();
-              onPageChange(item);
+              if (item !== currentPage) {
+                onPageChange(item);
+              }
             }}
           >
             {item}
